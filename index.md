@@ -24,4 +24,4 @@ The quantification and analysis of satellite streaks in astronomical images is c
 Our project uses images collected by the Trailblazer project, an open data repository containing images affected by streaks. We have created a python library called Satmetrics that can ingest a wide variety of images in FITS format, detect streaks in them, and return various properties of those streaks such as brightness and width.  Satmetrics is a starting point for generating information about satellite streaks that will help astronomers study the problem better, aid satellite operators in adopting better brightness mitigation strategies, and provide a firm evidence base for future policy actions.
 
 
-![Past, current and predicted numbers of LEO satellites in Earth's orbit.](/assets/img/summary/joined.jpg)
+[![](/assets/img/summary/joined.jpg)](assets/img/summary/joined.jpg)
