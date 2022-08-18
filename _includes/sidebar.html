@@ -14,16 +14,16 @@
 
       <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}">Home</a>
       <a class="sidebar-nav-item {% if page.url == node.url %} active{% endif %}" href="{{ '/motivation' | prepend: site.baseurl }}">Motivation</a>
-      
+
       <!-- An example of a section with drop-down menu -->
-      <button class="dropdown-btn">Methods
+      <a href="{{ '/method1' | prepend: site.baseurl }}"><button class="dropdown-btn">Methods
           <i class="fa fa-caret-down"></i>
-      </button>
+      </button></a>
       <div class="dropdown-container">
           <a href="{{ '/method1' | prepend: site.baseurl }}">Method 1</a><br/>
           <a href="{{ '/method2' | prepend: site.baseurl }}">Method 2</a>
       </div>
-      
+
       <a class="sidebar-nav-item {% if page.url == node.url %} active{% endif %}" href="{{ '/results' | prepend: site.baseurl }}">Results</a>
       <a class="sidebar-nav-item {% if page.url == node.url %} active{% endif %}" href="{{ '/about' | prepend: site.baseurl }}">About</a>
 
