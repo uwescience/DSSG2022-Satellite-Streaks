@@ -3,11 +3,10 @@ layout: page
 title: About
 ---
 
-### About
 
 [![](/assets/img/about/team_photo.png)](/DSSG2022-Satellite-Streaks/assets/img/about/team_photo.png)
 
-**Fellows**
+### Fellows
 
 #### Abhilash Biswas
 
@@ -31,7 +30,7 @@ Ashley Santos is a first-generation Latina-identifying undergraduate student at 
 
 Prior to DSSG, she was a research assistant alongside a UC Berkeley Ph.D. student where she cleaned and constructed data visualizations to summarize statistical data for a donor presentation in order to fund and continue research on COVID-19 impacts in India. Ashley is passionate about social justice and equity and hopes to use data science principles to address the structural inequities that impact marginalized communities.
 
-**Project Leads**
+### Project Leads
 
 #### Dino Bektešević
 
@@ -47,7 +46,7 @@ Meredith Rawls is a research scientist in the Department of Astronomy at the Uni
 
 Since early 2020, Meredith has studied the plethora of newly-launched commercial satellites in the hopes observers worldwide don’t lose the sky. She has served on and chaired working groups and co-authored reports for multiple workshops on astronomy and satellite constellations, and is spearheading the SatHub initiative at the new International Astronomical Union Centre for the Protection of the Dark and Quiet Sky from Satellite Constellation Interference (IAU CPS). 
 
-**Data Scientist**
+### Data Scientist
 
 #### Vaughn Iverson
 
