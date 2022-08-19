@@ -29,4 +29,3 @@ The tool also provides users with the option of masking the boundaries of the in
 
 Finally, the tool applies the Hough transformation algorithm on the Canny edge image and returns one or more estimated lines. However, since there is always some residual noise in the image, there can be multiple lines returned by the algorithm that represent the same streak. Hence, we cluster these lines together based on their proximity to each other. Accurate clustering groups the lines into one or more clusters, where each cluster represents either a single streak or noise. This allows downstream validation algorithms to apply checks at a cluster level and increase computation efficiency by avoiding validating every single returned line.
 
-
