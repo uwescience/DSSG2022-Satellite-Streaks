@@ -7,7 +7,7 @@ Low Earth Orbit (LEO) satellites have played an integral role in society’s inn
 
 This problem is especially pertinent for astronomers because LEO satellites impact telescope imaging. When telescopes capture images, they do so over the span of several seconds. Because LEO satellites are bright and rapidly moving, these satellites often appear as bright streaks in astronomical images, making astronomical research such as the discovery of new celestial bodies more difficult. And with the planned launch of more satellites, the incidence of these streaks in astronomical images will continue to grow. As of yet, there are few tools that allow astronomers to perform analyses on these streaks such as determining their width, their magnitudes (a standard astronomy unit for brightness), or their length.
 
-[![](/assets/img/Motivation/decam_trails.jpg)](/DSSG2022-Satellite-Streaks/assets/Motivation/decam_trails.jpg)
+[![](/assets/img/Motivation/decam_trails.jpg)](/DSSG2022-Satellite-Streaks/assets/img/Motivation/decam_trails.jpg)
 *Example of an astronomical image affected by satellite streaks. Credits: Cerro Tololo Inter-American Observatory (CTIO)*
 
 **Motivation/Goal**
@@ -17,7 +17,7 @@ One of the first steps towards tackling this problem is quantifying its extent  
 
 **Output**
 
-The final output of this project is a python library called Satmetrics. The library can take in any astronomical image in the form of a FITS (Flexible Image Transport System) file, detect the satellite streaks in it, and find basic properties of those streaks. A user can provide this library with multiple astronomical images as well as an optional dictionary of parameters that this library takes. Satmetrics then identifies possible streaks, validates them, and measures some of their properties. The properties measured are based on a best-fit Gaussian function:
+The final output of this project is a Python library called Satmetrics. The library can take in any astronomical image in the form of a FITS (Flexible Image Transport System) file, detect the satellite streaks in it, and find basic properties of those streaks. A user can provide this library with multiple astronomical images as well as an optional dictionary of parameters that this library takes. Satmetrics then identifies possible streaks, validates them, and measures some of their properties. The properties measured are based on a best-fit Gaussian function:
   * Mean brightness scaled to the pixel level of the image
   * Amplitude, representing the height of the streak
   * Width of the streak
@@ -31,5 +31,5 @@ Satmetrics, in its current form, is intended primarily for astronomers, but is a
 
 Overall, we hope that the at-scale analyses of streaks facilitated by this tool generates information that can help draw more attention towards this problem and provide data for policy interventions in this space. 
 
-[![](/assets/img/Motivation/satmetrics_output_example.png)](/DSSG2022-Satellite-Streaks/assets/Motivation/satmetrics_output_example.png)
+[![](/assets/img/Motivation/satmetrics_output_example.png)](/DSSG2022-Satellite-Streaks/assets/img/Motivation/satmetrics_output_example.png)
 *Example outputs of the satmetrics library*
