@@ -5,7 +5,7 @@ title: Measuring streaks
 
 When an image does contain a streak, its plotted median pixel intensity values will look approximately Gaussian.
 
-[![](/assets/img/methods/good_fit.png)](/DSSG2022-Satellite-Streaks/assets/img/methods/good_fit.png)
+[![](/assets/img/methods/good_fit.PNG)](/DSSG2022-Satellite-Streaks/assets/img/methods/good_fit.PNG)
 *This plot shows the median pixel intensity values from an image with a streak. The blue line represents the real data from the image, which looks approximately Gaussian. We fit a line through the real data, which is represented by the red line.*
 
 We empirically determined appropriate fitting  thresholds that perform well for all the image data we have available (we manually vetted this for at least a dozen images). When we fit a Gaussian profile to a real streak, we require the normalized root mean squared deviation, distance from the center of the cutout, and full width half maximum all pass the our thresholds. If the fit converges and passes validation, we confirm we have measured a streak. 
@@ -20,7 +20,7 @@ Rotating images around the mean of the cluster of detected Hough lines, as we do
 To improve this, we rotate the cutout image containing a streak around its calculated mean angle and repeat the fitting procedure to see which angle gives us the most accurate fit. We adopt the angle that returns the straightest line as the refined rotation angle.
 
 
-[![](/assets/img/methods/further_rotation_angle.png)](/DSSG2022-Satellite-Streaks/assets/img/methods/further_rotation_angle.png)
+[![](/assets/img/methods/further_rotation_angle.PNG)](/DSSG2022-Satellite-Streaks/assets/img/methods/further_rotation_angle.PNG)
 *The plots above are 6 rotated iterations of one image. We fit a line through each iteration and empirically determined that an image with a smaller normalized root mean square deviation is more representative of a straighter streak. The bottom right image has the lowest normalized root mean squared deviation and its line is fitted very closely to the real data. As a result, we would accept the angle that the bottom right plot has for our rotation angle that straightens our line*
 
 We tested this technique by applying the Gaussian fitting function on each of the profiles generated from slightly different rotation angles. We assume an image with a smaller normalized root mean squared deviation is more representative of a straighter streak. This process has helped us refine the algorithm and measure our streak properties with more accuracy.
