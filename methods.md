@@ -13,5 +13,6 @@ All of these processes are described in detail in the following sections.
 
 
 ![Past, current and predicted numbers of LEO satellites in Earth's orbit.](/assets/img/methods/summary_diagram.jpg)
+*Flowchart illustrating how the Satmetrics library processes astronomical images to detect, validate, and measure properties of satellite streaks*
 
 [^1]: https://scikit-image.org/docs/dev/auto_examples/edges/plot_line_hough_transform.html
