@@ -3,30 +3,39 @@ layout: page
 title: Measuring streaks
 ---
 
-When an image does contain a streak in it, its plotted median pixel intensity values will look approximately gaussian, which is the model that we used to determine whether or not we measured a streak. 
+When an image does contain a streak, its plotted median pixel intensity values will look approximately Gaussian.
 
-[![](/assets/img/methods/approx_gaussian_profile.png)](/DSSG2022-Satellite-Streaks/assets/img/methods/approx_gaussian_profile.png)
-*This is just fine as caption text here*
+[![](/assets/img/methods/good_fit.png)](/DSSG2022-Satellite-Streaks/assets/img/methods/good_fit.png)
+*This plot shows the median pixel intensity values from an image with a streak. The blue line represents the real data from the image, which looks approximately Gaussian. We fit a line through the real data, which is represented by the red line.*
 
-Through the creation of the algorithm, we had to first determine what gaussian metrics would indicate that we have measured a streak. After trial and error, we came down to some general thresholds that seem to pass on all the image data we have tested on. When we fit a line through the plot of streaked image, the normalized root mean squared deviation, distance from the middle and full width half maximum have to pass the given streak thresholds that passes our validation algorithm. If the line converges and passes validation, we confirm we have measured a streak. 
+We empirically determined appropriate fitting  thresholds that perform well for all the image data we have available (we manually vetted this for at least a dozen images). When we fit a Gaussian profile to a real streak, we require the normalized root mean squared deviation, distance from the center of the cutout, and full width half maximum all pass the our thresholds. If the fit converges and passes validation, we confirm we have measured a streak. 
 
-When we have a good fit line and pass validation, we keep this data and extract all the quantification metrics from the image. The quantification metrics that are outputted are the mean brightness scaled to the pixel level of the image, the amplitude that represents the height of the streak, the full width half maximum representing the width of the streak and the sigma value.
-
-**Furthering the rotation angle algorithm**
-
-Through the development of the rotation angle algorithm, we had an initial problem of the streak not being completely horizontal. The streak has to be completely horizontal so that we could have more precise streak analysis.
-
-A great benefit of fitting a line through our data is that we were able to use these metrics to help further the rotation angle algorithm. To do this, we had to rotate the angle on the hough transform line with new angle calculations that were close to the original calculated angle we had. Once we had these new angles, we tested them to see which one was the most accurate angle that straightens our line. 
-
-[![](/assets/img/methods/rotation_fits.png)](/DSSG2022-Satellite-Streaks/assets/img/methods/rotation_fits.png)
-*If we stick to it repeatedly it doesn't look that odd*
-
-We tested this by applying the fitting function on the new angle calculation plots. We assume an image with a smaller normalized root mean squared deviation is more representative of a straighter streak, since that is what seemed to be true for most of the streaks as we were comparing other angle calculation plots. As the normalized root mean squared deviation got smaller, the more closely our red fitted line got to our blue real data line.  Because we saw this pattern, we used the angle calculation with the least normalized square root mean deviation that we had for the image or graph, as the new angle calculation used in the rotation algorithm. This process has helped us refine the algorithm and measure our streak properties with more accuracy.
+When we have a good fit that passes validation, we keep this data and measure streak properties such as mean brightness scaled to the pixel level of the image, amplitude, which represents the median brightness of the streak, the full width half maximum, which represents the width of the streak, and the standard deviation (sigma) value of the fitted Gaussian.
 
 
-**And it isn't all that different when it renders from the "exact" solution, the benefit is that we can stylize this caption with CSS but not the other one.**
-<figure>
-    <img src="/DSSG2022-Satellite-Streaks/assets/img/methods/rotation_fits.png"
-         alt="A graph of how rotation of the found trail by a small offset from the found angle produces different profiles.">
-    <figcaption>A graph of how rotation of the found trail by a small offset from the found angle produces different profiles.</figcaption>
-</figure>
+**Refining the rotation angle**
+
+Rotating images around the mean of the cluster of detected Hough lines, as we do for validation, finds only an approximate rotation angle for the line. As a result, the line in the rotated image is not necessarily perfectly horizontal. This negatively affects the precision of our measurements.
+
+To improve this, we rotate the cutout image containing a streak around its calculated mean angle and repeat the fitting procedure to see which angle gives us the most accurate fit. We adopt the angle that returns the straightest line as the refined rotation angle.
+
+
+[![](/assets/img/methods/further_rotation_angle.png)](/DSSG2022-Satellite-Streaks/assets/img/methods/further_rotation_angle.png)
+*The plots above are 6 rotated iterations of one image. We fit a line through each iteration and empirically determined that an image with a smaller normalized root mean square deviation is more representative of a straighter streak. The bottom right image has the lowest normalized root mean squared deviation and its line is fitted very closely to the real data. As a result, we would accept the angle that the bottom right plot has for our rotation angle that straightens our line*
+
+We tested this technique by applying the Gaussian fitting function on each of the profiles generated from slightly different rotation angles. We assume an image with a smaller normalized root mean squared deviation is more representative of a straighter streak. This process has helped us refine the algorithm and measure our streak properties with more accuracy.
+
+**Edge cases**
+
+In certain cases, the line enters and/or exists in the image in such a position that it is impossible to effectively crop out the line without including the edge of the image in the cutout or excluding a section of the trail. For example, this can occur when a trail is close and parallel to the edge of an image.
+
+[![](/assets/img/methods/edge.png)](/DSSG2022-Satellite-Streaks/assets/img/methods/edge.png)
+*Image cutout containing the edge of the image. The profile on the right shows an obvious trend due to the edge*
+
+Excluding a section of the trail risks cutting the trail so short that it becomes undetectable and includes the image edge in the cutout, which biases our profile. To combat this, we remove any outliers from the retrieved profile by applying sigma clipping and fit a line to the remaining points. We then subtract the mean trend from our data, effectively removing the bias introduced by including the edge of the image in the cutout.
+
+[![](/assets/img/methods/sigma_clipping.png)](/DSSG2022-Satellite-Streaks/assets/img/methods/sigma_clipping.png)
+*The same profile as in the above figure is shown in blue in the top plot. In orange in the top plot is our fitted trend line. The middle plot represents the detrended image profile, i.e the image profile minus the fitted trend. The last plot shows our fit for the Gaussian streak profile*
+
+After detrending and refining the rotation angle, Satmetrics outputs the fit parameters of the image alongside with statistics such as mean pixel intensity of the trail, filename and other information back to the user in YAML format.
+
